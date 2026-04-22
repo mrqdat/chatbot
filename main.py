@@ -18,7 +18,7 @@ if not TOKEN or not CHAT_ID:
     )
 
 bot = telebot.TeleBot(TOKEN)
-stock = Vnstock().stock(source="VCI")
+stock = Vnstock().stock(symbol="FPT", source="VCI")
 
 # --- Portfolio ---
 
