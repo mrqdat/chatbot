@@ -1,0 +1,32 @@
+name: Daily Stock Report
+
+on:
+  schedule:
+    # Chạy vào lúc 09:15 UTC hàng ngày (tức 16:15 giờ Việt Nam)
+    # Sau khi kết thúc phiên giao dịch chứng khoán
+    - cron: '15 9 * * *'
+  workflow_dispatch: # Cho phép bấm chạy thủ công từ GitHub UI
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run daily report
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_ACTIONS: "true"
+        run: python main.py
