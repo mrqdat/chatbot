@@ -18,7 +18,7 @@ if not TOKEN or not CHAT_ID:
     )
 
 bot = telebot.TeleBot(TOKEN)
-stock = Vnstock().stock(symbol="FPT", source="TCBS")
+stock = Vnstock().stock(symbol="FPT", source="KBS")
 
 # --- Portfolio ---
 
@@ -34,7 +34,7 @@ def load_portfolio() -> list[dict]:
 
 def get_advice(symbol: str) -> str:
     """Phân tích kỹ thuật đơn giản cho mã cổ phiếu."""
-    df = stock.trading.history(symbol=symbol, period="1y").tail(50)
+    df = stock.quote.history(symbol=symbol, length="1y", interval="1D").tail(50)
 
     rsi = RSIIndicator(close=df["close"]).rsi().iloc[-1]
     last_close = df["close"].iloc[-1]
@@ -60,7 +60,7 @@ def daily_report() -> str:
         buy_price = item["buy_price"]
         volume = item.get("volume", 0)
 
-        price_df = stock.trading.price(symbol=symbol)
+        price_df = stock.quote.history(symbol=symbol, length="1b", interval="1D")
         curr_price = price_df['close'].iloc[0]
         
         pnl_pct = (curr_price - buy_price) / buy_price * 100
