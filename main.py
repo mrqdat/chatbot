@@ -61,7 +61,9 @@ def daily_report() -> str:
         buy_price = item["buy_price"]
         volume = item.get("volume", 0)
 
-        curr_price = stock.trading.price(symbol=symbol)
+        price_df = stock.trading.price(symbol=symbol)
+        curr_price = price_df['close'].iloc[0]
+        
         pnl_pct = (curr_price - buy_price) / buy_price * 100
         pnl_vnd = (curr_price - buy_price) * volume
 
