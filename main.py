@@ -2,7 +2,7 @@ import os
 import json
 import pandas as pd
 from dotenv import load_dotenv
-from vnstock3 import Vnstock
+from vnstock import Vnstock
 import telebot
 from ta.momentum import RSIIndicator
 

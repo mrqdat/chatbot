@@ -1,5 +1,6 @@
 pandas
-vnstock3
+vnstock
 pyTelegramBotAPI
 ta
 python-dotenv
+ipython
