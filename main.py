@@ -30,8 +30,7 @@ def load_portfolio() -> list[dict]:
     with open(PORTFOLIO_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
-
-# --- Analysis ---
+# --- Analysis ----
 
 def get_advice(symbol: str) -> str:
     """Phân tích kỹ thuật đơn giản cho mã cổ phiếu."""
