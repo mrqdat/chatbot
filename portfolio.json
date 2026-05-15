@@ -1,4 +1,17 @@
 [
-    {"symbol": "PVT", "buy_price": 24.4, "volume": 200},
-    {"symbol": "PVT", "buy_price": 25.03, "volume": 30}
+    {
+        "symbol": "PVT",
+        "buy_price": 24.4,
+        "volume": 200
+    },
+    {
+        "symbol": "PVT",
+        "buy_price": 25.03,
+        "volume": 30
+    },
+    {
+        "symbol": "SHB",
+        "buy_price": 13.9,
+        "volume": 40
+    }
 ]

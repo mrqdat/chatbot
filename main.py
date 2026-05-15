@@ -95,11 +95,11 @@ def send_advice(message):
 if __name__ == "__main__":
     # Nếu chạy trong GitHub Actions, gửi báo cáo rồi thoát
     if os.getenv("GITHUB_ACTIONS") == "true":
-        print("🚀 Đang chạy báo cáo tự động trên GitHub Actions...")
+        print("Dang chay bao cao tu dong tren GitHub Actions...")
         report = daily_report()
         bot.send_message(CHAT_ID, report)
-        print("✅ Đã gửi báo cáo thành công.")
+        print("Da gui bao cao thanh cong.")
     else:
         # Chế độ bot tương tác thông thường
-        print("🤖 Bot đang chạy chế độ Polling...")
+        print("Bot dang chay che do Polling...")
         bot.polling(none_stop=True)
