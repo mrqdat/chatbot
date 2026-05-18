@@ -1,4 +1,10 @@
 import os
+import sys
+
+# Ensure stdout uses utf-8 encoding to prevent UnicodeEncodeError with vnstock emojis
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import json
 import pandas as pd
 from dotenv import load_dotenv
