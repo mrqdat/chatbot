@@ -11,8 +11,6 @@ from dotenv import load_dotenv
 from vnstock import Vnstock
 import telebot
 from ta.momentum import RSIIndicator
-import threading
-from http.server import BaseHTTPRequestHandler, HTTPServer
 
 # --- Load environment variables ---
 load_dotenv()
@@ -98,26 +96,6 @@ def send_advice(message):
     bot.reply_to(message, get_advice(symbol))
 
 
-# --- Dummy Web Server for Render ---
-
-class DummyHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/plain; charset=utf-8')
-        self.end_headers()
-        self.wfile.write(b"Bot is running 24/7 on Render!")
-
-    def log_message(self, format, *args):
-        # Tắt log để tránh spam terminal khi UptimeRobot ping liên tục
-        pass
-
-def run_dummy_server():
-    port = int(os.environ.get("PORT", 8080))
-    server_address = ('0.0.0.0', port)
-    httpd = HTTPServer(server_address, DummyHandler)
-    print(f"Bat dau chay Dummy Server tren cong {port}...")
-    httpd.serve_forever()
-
 # --- Entry point ---
 
 if __name__ == "__main__":
@@ -130,8 +108,4 @@ if __name__ == "__main__":
     else:
         # Chế độ bot tương tác thông thường
         print("Bot dang chay che do Polling...")
-        
-        # Khởi chạy Web Server giả lập cho Render chạy ngầm
-        threading.Thread(target=run_dummy_server, daemon=True).start()
-        
         bot.polling(none_stop=True)

@@ -3,6 +3,7 @@ pandas
 vnstock>=4.0.3
 vnstock_chart
 pyTelegramBotAPI
+Flask
 ta
 python-dotenv
 ipython
