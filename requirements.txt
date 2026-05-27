@@ -1,5 +1,7 @@
+--extra-index-url https://vnstocks.com/api/simple
 pandas
-vnstock
+vnstock>=4.0.3
+vnstock_chart
 pyTelegramBotAPI
 ta
 python-dotenv
